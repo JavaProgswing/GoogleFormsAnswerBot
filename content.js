@@ -23,23 +23,31 @@ async function processTextQuestions() {
   questions.forEach(async (questionElement) => {
     const questionTextElement = questionElement.querySelector("div[role='heading']");
     const radioGroup = questionElement.querySelector("[role='radiogroup']");
+    const checkboxList = questionElement.querySelector("[role='list']"); // Identify checkbox groups
     let questionText = "";
 
     if (questionTextElement) {
       questionText = questionTextElement.innerText.trim();
     }
 
+    // Handle radio group
     if (radioGroup) {
-    // Find all labels within the radiogroup
-    const labels = radioGroup.querySelectorAll("label");
-
-    // Extract text content from spans inside the labels
-    const options = Array.from(labels).map((label, index) => {
-      const optionSpan = label.querySelector("span"); // Find the span inside the label
-      return `${index + 1}) ${optionSpan ? optionSpan.innerText.trim() : "Option not found"}`;
-    });
-
+      const labels = radioGroup.querySelectorAll("label");
+      const options = Array.from(labels).map((label, index) => {
+        const optionSpan = label.querySelector("span");
+        return `${index + 1}) ${optionSpan ? optionSpan.innerText.trim() : "Option not found"}`;
+      });
       questionText += ` Choose from one of these MCQ Options: ${options}`;
+    }
+
+    // Handle checkbox list
+    if (checkboxList) {
+      const checkboxItems = checkboxList.querySelectorAll("[role='listitem']");
+      const options = Array.from(checkboxItems).map((item, index) => {
+        const labelSpan = item.querySelector("span");
+        return `${index + 1}) ${labelSpan ? labelSpan.innerText.trim() : "Option not found"}`;
+      });
+      questionText += ` Select from these checkbox options: ${options}`;
     }
 
     if (questionText) {

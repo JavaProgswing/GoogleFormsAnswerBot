@@ -31,7 +31,7 @@ Google Forms Answer Bot is a Chrome extension designed to enhance the user exper
    python tools/main.py
    ```
    - Ensure the script continues running in the background.
-   - During the first run, you may be prompted to enter credentials for accessing ChatGPT services. Follow the on-screen instructions.
+   - During the first run, you may be prompted to enter google account credentials for accessing ChatGPT services. Follow the on-screen instructions.
 
 3. **Load the Unpacked Extension in Chrome**:  
    - Open Chrome and navigate to `chrome://extensions/`.

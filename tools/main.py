@@ -84,9 +84,11 @@ def get_traceback(error):
 def get_new_browser():
     browser = initialize_browser()
     browser.current_n = 3
+    browser.find_element(By.CSS_SELECTOR, '[data-testid="login-button"]').click()
     try:
         WebDriverWait(browser, 5).until(EC.url_contains("https://auth.openai.com"))
     except TimeoutException:
+        print("Failed to load the login page.")
         return browser
 
     try:
@@ -155,7 +157,7 @@ async def get_prompt_response(browser, prompt):
             EC.presence_of_element_located((By.ID, "prompt-textarea"))
         )
         textarea.clear()
-        textarea.send_keys(prompt)
+        textarea.send_keys(prompt.replace("\n", ""))
 
         button = WebDriverWait(browser, 15).until(
             EC.presence_of_element_located(
