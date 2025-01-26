@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Google Forms Answer Bot",
+  "version": "1.0",
+  "description": "Displays answers for text and image-based questions(OCR) in Google Forms using ChatGPT.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://docs.google.com/forms/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/forms/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["libs/tesseract.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

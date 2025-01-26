@@ -1,0 +1,5 @@
+selenium == 4.23.1
+selenium-profiles
+quart-cors
+quart
+blinker==1.7.0
